@@ -2,7 +2,7 @@
 import FormInput from "@/components/form-input";
 import { useActionState } from "react";
 import { handleForm } from "./action";
-import { useFormState } from "react-dom";
+import FormButton from "@/components/form-btn";
 
 export default function Home() {
   const [state, action] = useActionState(handleForm, null);
@@ -34,9 +34,7 @@ export default function Home() {
           required
           errors={[state?.errors] || ""}
         />
-        <button className="p-3 bg-gray-200 text-neutral-950 font-medium rounded-full text-center hover:bg-gray-300 transition-colors">
-          Log in
-        </button>
+        <FormButton text="Log In" />
         {state?.success && (
           <span className="p-4 bg-green-500 text-neutral-950 font-medium rounded-2xl flex">
             <svg

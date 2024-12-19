@@ -14,7 +14,7 @@ export default function FormInput({
 }: FormInputProps) {
   return (
     <>
-    <div className="flex items-center border-2 border-gray-300 rounded-full px-3 py-2 focus-within:border-blue-500 transition">
+    <div className="flex items-center border-2 border-gray-300 outline-offset-1 rounded-full px-3 py-2 focus-within:border-gray-500 transition ">
       {name === "email" && (
         <svg
         className="h-5 w-5 m-2 text-gray-500"
