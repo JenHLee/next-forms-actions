@@ -1,6 +1,7 @@
 "use server";
 import { z } from "zod";
 
+
 const formSchema = z.object({
     email: z.string().email().refine((email) => email.endsWith("@zod.com"), {
         message: "Only @zod.com emails are allowed"
