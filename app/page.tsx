@@ -6,22 +6,22 @@ import FormButton from "@/components/form-btn";
 
 export default function Home() {
   const [state, dispatch] = useActionState(handleForm, null);
-  const [successMessage, setSuccessMessage] = useState("");
+  // const [successMessage, setSuccessMessage] = useState("");
 
-  const handleFormSubmit = async(formData:FormData) => {
-    const result = await dispatch (formData);
-    if (result && result.success) {
-      setSuccessMessage(result.message);
-    } else {
-      setSuccessMessage ("");
-    }
-  } 
+  // const handleFormSubmit = async(formData:FormData) => {
+  //   const result = await dispatch (formData);
+  //   if (result && result.success) {
+  //     setSuccessMessage(result.message);
+  //   } else {
+  //     setSuccessMessage ("");
+  //   }
+  // } 
 
 
   return (
     <div className="flex flex-col justify-center items-center mt-10 gap-5">
       <span className="text-4xl	">🔥</span>
-      <form action={handleFormSubmit} className="flex flex-col gap-3 w-1/2">
+      <form action={dispatch} className="flex flex-col gap-3 w-1/2">
         <FormInput
           name="email"
           type="email"
