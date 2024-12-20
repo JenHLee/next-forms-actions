@@ -1,37 +1,48 @@
 "use client";
 import FormInput from "@/components/form-input";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { handleForm } from "./action";
 import FormButton from "@/components/form-btn";
 
 export default function Home() {
-  const [state, action] = useActionState(handleForm, null);
-  //console.log(state);
+  const [state, dispatch] = useActionState(handleForm, null);
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleFormSubmit = async(formData:FormData) => {
+    const result = await dispatch (formData);
+    if (result && result.success) {
+      setSuccessMessage(result.message);
+    } else {
+      setSuccessMessage ("");
+    }
+  } 
+
 
   return (
     <div className="flex flex-col justify-center items-center mt-10 gap-5">
       <span className="text-4xl	">🔥</span>
-      <form action={action} className="flex flex-col gap-3 w-1/2">
+      <form action={handleFormSubmit} className="flex flex-col gap-3 w-1/2">
         <FormInput
           name="email"
           type="email"
           placeholder="Email"
           required
-          errors={""}
+          errors={state?.fieldErrors?.email || ""}
+
         />
         <FormInput
           name="username"
           type="text"
           placeholder="Username"
           required
-          errors={""}
+          errors={state?.fieldErrors?.username || ""}
         />
         <FormInput
           name="password"
           type="password"
           placeholder="Password"
           required
-          errors={state?.errors || ""}
+          errors={state?.fieldErrors?.password || ""}
         />
         <FormButton text="Log In" />
         {state?.success && (
@@ -52,7 +63,7 @@ export default function Home() {
                 d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               ></path>
             </svg>
-            {state?.success}
+            {state.message}
           </span>
         )}
       </form>
