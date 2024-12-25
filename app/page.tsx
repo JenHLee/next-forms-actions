@@ -1,60 +1,24 @@
-"use client";
-import FormInput from "@/components/form-input";
-import { useActionState, useState } from "react";
-import { handleForm } from "./action";
-import FormButton from "@/components/form-btn";
+import Link from "next/link";
+import "@/lib/db";
 
 export default function Home() {
-  const [state, dispatch] = useActionState(handleForm, null);
-
   return (
-    <div className="flex flex-col justify-center items-center mt-10 gap-5">
-      <span className="text-4xl	">🔥</span>
-      <form action={dispatch} className="flex flex-col gap-3 w-1/2">
-        <FormInput
-          name="email"
-          type="email"
-          placeholder="Email"
-          required
-          errors={state?.fieldErrors?.email || ""}
-        />
-        <FormInput
-          name="username"
-          type="text"
-          placeholder="Username"
-          required
-          errors={state?.fieldErrors?.username || ""}
-        />
-        <FormInput
-          name="password"
-          type="password"
-          placeholder="Password"
-          required
-          errors={state?.fieldErrors?.password || ""}
-        />
-        <FormButton text="Log In" />
-        {state?.success && (
-          <span className="p-4 bg-green-500 text-neutral-950 font-medium rounded-2xl flex">
-            <svg
-              className="h-6 w-6 mx-2"
-              data-slot="icon"
-              fill="none"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-              ></path>
-            </svg>
-            {state.message}
-          </span>
-        )}
-      </form>
+    <div className="flex flex-col items-center justify-between min-h-screen p-6">
+      <div className="my-auto flex flex-col items-center gap-2 *:font-medium">
+      </div>
+
+      <div className="flex flex-col items-center gap-3 w-full">
+        <Link
+          href="/create-account"
+          className="primary-btn py-2.5 text-lg"
+        >
+          시작하기
+        </Link>
+        <div className="flex gap-2 ">
+          <span>이미 계정이 있나요?</span>
+          <Link href="/login" className="hover:underline underline-offset-4">로그인</Link>
+        </div>
+      </div>
     </div>
   );
 }

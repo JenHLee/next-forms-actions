@@ -5,7 +5,7 @@ interface FormInputProps {
   required: boolean;
   errors?: string;
 }
-export default function FormInput({
+export default function Input({
   name,
   type,
   placeholder,
