@@ -1,24 +1,27 @@
-import Link from "next/link";
+import TweetList from "@/components/tweet-list";
 import "@/lib/db";
+import db from "@/lib/db";
+import { Prisma } from "@prisma/client";
 
-export default function Home() {
-  return (
-    <div className="flex flex-col items-center justify-between min-h-screen p-6">
-      <div className="my-auto flex flex-col items-center gap-2 *:font-medium">
-      </div>
+async function getInitialTweets() {
+  const tweets = await db.tweet.findMany({
+    select: {
+      id: true,
+      tweet: true,
+      created_at: true,
+      Like: true,
+    },
+    take: 1,
+    orderBy: {
+      created_at: "desc",
+    },
+  });
+  return tweets;
+}
 
-      <div className="flex flex-col items-center gap-3 w-full">
-        <Link
-          href="/create-account"
-          className="primary-btn py-2.5 text-lg"
-        >
-          시작하기
-        </Link>
-        <div className="flex gap-2 ">
-          <span>이미 계정이 있나요?</span>
-          <Link href="/login" className="hover:underline underline-offset-4">로그인</Link>
-        </div>
-      </div>
-    </div>
-  );
+export type initialTweets = Prisma.PromiseReturnType<typeof getInitialTweets>; 
+
+export default async function Home() {
+  const initialTweets = await getInitialTweets();
+  return <TweetList initialTweets={initialTweets} />;
 }
