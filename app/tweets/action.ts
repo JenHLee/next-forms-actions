@@ -10,7 +10,7 @@ export async function getMoreTweets (page:number) {
             created_at: true,
             Like: true,
         },
-        skip: 1,
+        skip: page * 1,
         take:1,
         orderBy: {
             created_at: "desc"
