@@ -5,9 +5,9 @@ interface SessionContent {
     id?: number
 }
 
-export default function getSession() {
-    return getIronSession<SessionContent>(cookies(), {
-        cookieName: "delicious-karrot",
+export default async function getSession() {
+    return getIronSession<SessionContent>(await cookies(), {
+        cookieName: "tweet-cookie",
         password: process.env.COOKIE_PASSWORD!
     });
 }

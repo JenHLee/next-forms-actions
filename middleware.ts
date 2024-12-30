@@ -17,10 +17,11 @@ export async function middleware(request: NextRequest) {
     if(!session.id) {
         if(!exists) {
             return NextResponse.redirect(new URL("/create-account", request.url))
-        }else {
+        }
+    }else {
+            // user logged in =>
             if (exists){
                 return NextResponse.redirect(new URL("/", request.url))
             }
         }
     }
-}

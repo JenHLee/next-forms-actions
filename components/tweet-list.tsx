@@ -43,5 +43,5 @@ export default function TweetList({ initialTweets }: TweetListProps) {
       </button>
       }
     </div>
-  );
+  )
 }
