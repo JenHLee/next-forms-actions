@@ -14,7 +14,8 @@ export async function likeTweet(tweetId: number) {
       },
     });
     revalidateTag(`like-status-${tweetId}`);
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);}
 }
 
 export async function dislikeTweet(tweetId: number) {
@@ -30,7 +31,8 @@ export async function dislikeTweet(tweetId: number) {
       },
     });
     revalidateTag(`like-status-${tweetId}`);
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);}
 }
 
 export async function responseTweet(tweetId: number, payload:string) {
@@ -70,5 +72,6 @@ export async function unresponseTweet(tweetId: number) {
 
     // 해당 트윗의 응답 상태를 새로 고침
     revalidateTag(`response-status-${tweetId}`);
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);}
 }
