@@ -8,7 +8,7 @@ export async function getMoreTweets (page:number) {
             id: true,
             tweet: true,
             created_at: true,
-            Like: true,
+            like: true,
         },
         skip: page * 1,
         take:1,
