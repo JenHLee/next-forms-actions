@@ -100,10 +100,11 @@ export default async function TweetDetail({
 }: {
   params: { id: paramsType };
 }) {
-  const id = Number(params.id);
-  if (isNaN(id)) {
-    return notFound();
-  }
+  const id = await params;
+  // id = Number(params.id);
+  // if (isNaN(id)) {
+  //   return notFound();
+  // }
   const tweet = await getTweets(id);
   if (!tweet) {
     return notFound();
