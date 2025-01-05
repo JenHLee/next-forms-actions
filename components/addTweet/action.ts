@@ -39,7 +39,7 @@ export async function createNewTweet(prevState: any, formData: FormData) {
                     id: true
                 }
             });
-            redirect(`/${tweet.id}`);
+            redirect(`/tweets/${tweet.id}`);
 
         }
     }
