@@ -16,21 +16,21 @@ export default function CreateAccount() {
           type="email"
           placeholder="Email"
           required
-          errors={state?.fieldErrors?.email || ""}
+          errors={Array.isArray(state?.fieldErrors?.email) ? state?.fieldErrors.email[0] || "" : state?.fieldErrors.email || ""}
         />
         <FormInput
           name="username"
           type="text"
           placeholder="Username"
           required
-          errors={state?.fieldErrors?.username || ""}
-        />
+          errors={Array.isArray(state?.fieldErrors?.username) ? state?.fieldErrors.username[0] || "" : state?.fieldErrors.username || ""}
+          />
         <FormInput
           name="password"
           type="password"
           placeholder="Password"
           required
-          errors={state?.fieldErrors?.password || ""}
+          errors={Array.isArray(state?.fieldErrors?.password) ? state?.fieldErrors.password[0] || "" : state?.fieldErrors.password || ""}
         />
         <FormButton text="Create Account" />
         {state?.success && (
