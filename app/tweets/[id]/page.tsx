@@ -93,11 +93,12 @@ async function getCachedResponseStatus(tweetId: number) {
   );
   return cachedOperation(tweetId, userId!);
 }
+type paramsType = Promise<{ id: string }>;
 
 export default async function TweetDetail({
   params,
 }: {
-  params: { id: number };
+  params: { id: paramsType };
 }) {
   const id = Number(params.id);
   if (isNaN(id)) {
