@@ -94,13 +94,9 @@ async function getCachedResponseStatus(tweetId: number) {
   return cachedOperation(tweetId, userId!);
 }
 
-export default async function TweetDetail({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const id = Number(await params.id);
-  
+export default async function TweetDetail({params}: { params: { id: string }}) {
+  const id = Number(params.id);
+
   if (isNaN(id)) {
     return notFound();
   }
