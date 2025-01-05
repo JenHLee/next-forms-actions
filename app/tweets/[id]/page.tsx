@@ -54,8 +54,8 @@ async function getResponseStatus(tweetId: number, userId: number) {
     where: {
       id: {
         tweetId,
-        userId
-      }
+        userId,
+      },
     },
   });
   const response = await db.response.findUnique({
@@ -63,7 +63,7 @@ async function getResponseStatus(tweetId: number, userId: number) {
       id: {
         userId,
         tweetId,
-      }
+      },
     },
   });
   return {
@@ -93,18 +93,17 @@ async function getCachedResponseStatus(tweetId: number) {
   );
   return cachedOperation(tweetId, userId!);
 }
-type paramsType = Promise<{ id: string }>;
 
 export default async function TweetDetail({
   params,
 }: {
-  params: { id: paramsType };
+  params: { id: string };
 }) {
-  const id = await params;
-  // id = Number(params.id);
-  // if (isNaN(id)) {
-  //   return notFound();
-  // }
+  const id = Number(await params.id);
+  
+  if (isNaN(id)) {
+    return notFound();
+  }
   const tweet = await getTweets(id);
   if (!tweet) {
     return notFound();
