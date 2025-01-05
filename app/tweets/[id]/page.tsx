@@ -30,7 +30,6 @@ async function getTweets(id: number) {
 }
 
 async function getLikeStatus(tweetId: number, userId: number) {
-  //   const session = await getSession();
   const isLiked = await db.like.findUnique({
     where: {
       id: {
@@ -46,12 +45,11 @@ async function getLikeStatus(tweetId: number, userId: number) {
   });
   return {
     likeCount,
-    isLiked: Boolean(isLiked), // like가 있으면 (이미 like되어있다면 true / 아니면 false)
+    isLiked: Boolean(isLiked),
   };
 }
 
 async function getResponseStatus(tweetId: number, userId: number) {
-  //   const session = await getSession();
   const isResponsed = await db.response.findUnique({
     where: {
       id: {
@@ -101,7 +99,6 @@ export default async function TweetDetail({
 }: {
   params: { id: string };
 }) {
-
   const id = Number(params.id);
   if (isNaN(id)) {
     return notFound();
